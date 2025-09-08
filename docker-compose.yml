@@ -1,0 +1,23 @@
+services:
+  file-storage:
+    image: python:3.11-slim
+    container_name: file-storage-api
+    working_dir: /app
+    volumes:
+      # Mount project source
+      - .:/app
+      # Persist uploads on host
+      - ./uploads:/app/uploads
+      # Persist SQLite DB on host
+      - ./files.db:/app/files.db
+      # Optional logs
+      - ./logs:/app/logs
+    ports:
+      - "8080:8000"
+    command: >
+      sh -c "
+        pip install --no-cache-dir uv &&
+        uv sync --no-dev &&
+        uv run uvicorn main:app --host 0.0.0.0 --port 8000
+      "
+    restart: unless-stopped
