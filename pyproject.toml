@@ -12,6 +12,7 @@ dependencies = [
     "pyright[nodejs]>=1.1.405",
     "python-dotenv>=1.1.1",
     "python-multipart>=0.0.20",
+    "python-slugify>=8.0.4",
     "sqlalchemy>=2.0.43",
     "structlog>=25.4.0",
     "uvicorn[standard]>=0.35.0",

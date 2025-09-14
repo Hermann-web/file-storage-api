@@ -8,6 +8,7 @@ from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pydantic import EmailStr
+from slugify import slugify
 from sqlalchemy import text
 
 from .constants import UPLOAD_DIR
@@ -256,14 +257,16 @@ async def download_file(public_id: str):
             email=file_record.email,
         )
 
+        fname: str = slugify(file_record.original_filename)
+
         return FileResponse(
             path=str(file_path),  # Convert pathlib Path to string for FileResponse
-            filename=file_record.original_filename,
+            filename=fname,
             media_type=file_record.content_type,
             headers={
                 "Content-Length": file_record.file_size,
                 "Cache-Control": "public, max-age=3600",  # Cache for 1 hour
-                "Content-Disposition": f'attachment; filename="{file_record.original_filename}"',
+                "Content-Disposition": f'attachment; filename="{fname}"',
             },
         )
 
