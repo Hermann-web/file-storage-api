@@ -249,15 +249,15 @@ async def download_file(public_id: str):
             )
             raise HTTPException(status_code=404, detail="Path is not a file")
 
+        fname: str = slugify(file_record.original_filename)  # fix some encoding pb
+
         log_info(
             "File download completed successfully",
             public_id=public_id,
-            original_filename=file_record.original_filename,
+            original_filename=fname,
             file_size=file_record.file_size,
             email=file_record.email,
         )
-
-        fname: str = slugify(file_record.original_filename)
 
         return FileResponse(
             path=str(file_path),  # Convert pathlib Path to string for FileResponse
