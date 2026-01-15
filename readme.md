@@ -15,12 +15,13 @@ A lightweight FastAPI-based file storage service with UUID-based file management
 
 ```
 simple-file-storage/
-├── main.py              # FastAPI application
-├── requirements.txt     # Python dependencies
-├── files/              # Upload directory (auto-created)
-├── files.db            # SQLite database (auto-created)
-├── README.md           # This file
-└── deploy.md           # Deployment guide
+├── main.py           # FastAPI application entry point
+├── src/              # FastAPI application
+├── pyproject.toml    # Python dependencies
+├── files/            # Upload directory (auto-created)
+├── files.db          # SQLite database (auto-created)
+├── README.md         # This file
+└── docs/deploy.md    # Deployment guide
 ```
 
 ## 🛠️ API Endpoints

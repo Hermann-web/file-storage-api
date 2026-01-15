@@ -24,6 +24,7 @@ Base = declarative_base()
 class FileUploadResponse(BaseModel):
     success: bool
     public_url: str
+    public_id: str
     message: str
 
 

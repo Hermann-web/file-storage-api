@@ -177,6 +177,7 @@ async def upload_file(
         return FileUploadResponse(
             success=True,
             public_url=public_url,
+            public_id=public_id,
             message=f"File '{file.filename}' uploaded successfully ({file_size:,} bytes)",
         )
 
